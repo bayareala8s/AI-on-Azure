@@ -42,3 +42,50 @@ The Azure Cognitive Services Computer Vision Python SDK provides a wide range of
 
 Remember, to use these features, you need to have an Azure account and an instance of the Computer Vision service created in your Azure account.
 
+### Steps on how to use the Azure Cognitive Services Computer Vision Python SDK to perform object detection
+
+To use the Azure Cognitive Services Computer Vision Python SDK for object detection, you need to follow these steps:
+
+1. Install the Azure Cognitive Services Computer Vision Python SDK if you haven't done so already. You can do this using pip:
+
+```bash
+pip install --upgrade azure-cognitiveservices-vision-computervision
+```
+
+2. Import the necessary modules in your Python script:
+
+```python
+from azure.cognitiveservices.vision.computervision import ComputerVisionClient
+from msrest.authentication import CognitiveServicesCredentials
+```
+
+3. Set up the client with your Azure Cognitive Services endpoint and key:
+
+```python
+endpoint = "<your_endpoint>"
+key = "<your_key>"
+
+computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(key))
+```
+
+4. Use the `detect_objects` method to perform object detection on an image:
+
+```python
+image_url = "<url_to_your_image>"
+
+detect_objects_results = computervision_client.detect_objects(image_url)
+
+# Print detected objects results
+if len(detect_objects_results.objects) == 0:
+    print("No objects detected.")
+else:
+    for object in detect_objects_results.objects:
+        print("object at location {}, {}, {}, {}".format( \
+        object.rectangle.x, object.rectangle.x + object.rectangle.w, \
+        object.rectangle.y, object.rectangle.y + object.rectangle.h))
+```
+
+In this code, replace `<your_endpoint>` and `<your_key>` with your Azure Cognitive Services endpoint and key, and replace `<url_to_your_image>` with the URL of the image you want to analyze.
+
+This script will print the locations of detected objects in the image. Each location is represented by the coordinates of the top left corner and the bottom right corner of the bounding box around the object.
+
