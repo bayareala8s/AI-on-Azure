@@ -89,3 +89,65 @@ In this code, replace `<your_endpoint>` and `<your_key>` with your Azure Cogniti
 
 This script will print the locations of detected objects in the image. Each location is represented by the coordinates of the top left corner and the bottom right corner of the bounding box around the object.
 
+### Analyze an image using Azure AI Computer Vision
+
+
+To analyze an image using Azure AI Computer Vision, you need to follow these steps:
+
+1. Import the necessary modules.
+2. Set up your Azure endpoint and key.
+3. Load the image you want to analyze.
+4. Create an Image Analysis client.
+5. Call the `analyze` method on the client, passing in the image data and the visual features you want to analyze.
+6. Print the analysis results.
+
+Here is a Python code example based on your `image_detection.py` script:
+
+```python
+from azure.ai.vision.imageanalysis import ImageAnalysisClient
+from azure.ai.vision.imageanalysis.models import VisualFeatures
+from azure.core.credentials import AzureKeyCredential
+
+# Set the values of your computer vision endpoint and computer vision key
+endpoint = "https://westus.api.cognitive.microsoft.com/"
+key = "****************"
+
+# Load image to analyze into a 'bytes' object
+with open("/path/to/your/image.jpg", "rb") as f:
+    image_data = f.read()
+
+# Create an Image Analysis client
+client = ImageAnalysisClient(
+    endpoint=endpoint,
+    credential=AzureKeyCredential(key),
+    logging_enable=True
+)
+
+# Analyze all visual features from an image stream
+result = client.analyze(
+    image_data=image_data,
+    visual_features=[
+        VisualFeatures.TAGS,
+        VisualFeatures.OBJECTS,
+        VisualFeatures.CAPTION,
+        VisualFeatures.DENSE_CAPTIONS,
+        VisualFeatures.READ,
+        VisualFeatures.SMART_CROPS,
+        VisualFeatures.PEOPLE,
+    ],  # Select one or more visual features to analyze.
+    smart_crops_aspect_ratios=[0.9, 1.33],  # Optional. Relevant only if SMART_CROPS was specified above.
+    gender_neutral_caption=True,  # Optional. Relevant only if CAPTION or DENSE_CAPTIONS were specified above.
+    language="en",  # Optional. Relevant only if TAGS is specified above.
+    model_version="latest",  # Optional. Analysis model version to use. Defaults to "latest".
+)
+
+# Print all analysis results to the console
+print("Image analysis results:")
+print(f" Caption: '{result.caption.text}', Confidence {result.caption.confidence:.4f}")
+print(f" Image height: {result.metadata.height}")
+print(f" Image width: {result.metadata.width}")
+print(f" Model version: {result.model_version}")
+```
+
+Please replace `"/path/to/your/image.jpg"` with the actual path to the image you want to analyze. Also, make sure to replace the `endpoint` and `key` with your actual Azure endpoint and key.
+
