@@ -20,3 +20,88 @@ Azure Speech Services provide a variety of features that allow developers to inc
 
 Remember, these features are subject to change as Microsoft continues to update and improve Azure Speech Services. Always refer to the official Azure documentation for the most accurate and up-to-date information.
 
+
+### Python examples for Azure AI Speech Services for Speech to Text, Text to Speech, Speech Translation, Speaker Recognition, Custom Speech, Conversation Transcription, Custom Voice, Pronunciation Assessment
+
+Sure, here are some real-world examples of using Azure AI Speech services in Python:
+
+1. **Speech to Text**:
+
+```python
+from azure.cognitiveservices.speech import SpeechConfig, SpeechRecognizer, AudioConfig
+
+speech_config = SpeechConfig(subscription="<your-speech-service-key>", region="<your-speech-service-region>")
+audio_config = AudioConfig(filename="your_audio_file.wav") # replace with your audio file
+speech_recognizer = SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
+
+result = speech_recognizer.recognize_once()
+print(result.text)
+```
+
+2. **Text to Speech**:
+
+```python
+from azure.cognitiveservices.speech import SpeechConfig, SpeechSynthesizer, AudioConfig
+
+speech_config = SpeechConfig(subscription="<your-speech-service-key>", region="<your-speech-service-region>")
+audio_output = AudioConfig(filename="output_audio.wav") # replace with your output file
+speech_synthesizer = SpeechSynthesizer(speech_config=speech_config, audio_config=audio_output)
+
+result = speech_synthesizer.speak_text_async("Hello, world!").get()
+```
+
+3. **Speech Translation**:
+
+```python
+from azure.cognitiveservices.speech import SpeechConfig, SpeechRecognizer, AudioConfig, TranslationRecognizer
+
+speech_config = SpeechConfig(subscription="<your-speech-service-key>", region="<your-speech-service-region>")
+audio_config = AudioConfig(filename="your_audio_file.wav") # replace with your audio file
+translation_config = TranslationRecognizer(speech_config=speech_config, audio_config=audio_config, target_languages=['de'])
+
+result = translation_config.recognize_once()
+print(result.translations['de'])
+```
+
+4. **Speaker Recognition**:
+
+```python
+# Speaker Recognition is currently not supported in the Python SDK. Please refer to the REST API documentation.
+```
+
+5. **Custom Speech**:
+
+```python
+# Custom Speech is currently not supported in the Python SDK. Please refer to the REST API documentation.
+```
+
+6. **Conversation Transcription**:
+
+```python
+# Conversation Transcription is currently not supported in the Python SDK. Please refer to the REST API documentation.
+```
+
+7. **Custom Voice**:
+
+```python
+# Custom Voice is currently not supported in the Python SDK. Please refer to the REST API documentation.
+```
+
+8. **Pronunciation Assessment**:
+
+```python
+from azure.cognitiveservices.speech import SpeechConfig, SpeechRecognizer, AudioConfig, PronunciationAssessmentConfig
+
+speech_config = SpeechConfig(subscription="<your-speech-service-key>", region="<your-speech-service-region>")
+audio_config = AudioConfig(filename="your_audio_file.wav") # replace with your audio file
+pronunciation_assessment_config = PronunciationAssessmentConfig(reference_text="Hello, world!", grading_system="HundredMark", granularity="Phoneme")
+
+speech_recognizer = SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
+speech_recognizer.pronunciation_assessment_config = pronunciation_assessment_config
+
+result = speech_recognizer.recognize_once()
+print(result.pronunciation_assessment)
+```
+
+Remember to replace `"<your-speech-service-key>"`, `"<your-speech-service-region>"`, `"your_audio_file.wav"`, and `"output_audio.wav"` with your actual service keys, region, and file names.
+
