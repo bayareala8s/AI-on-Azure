@@ -1,3 +1,25 @@
+### Key features of the Azure AI Language Services
+
+Azure AI Language Services provide a variety of features that allow developers to build applications that can understand and translate human language. Here are some key features:
+
+1. **Text Analytics**: This service provides APIs for language detection, key phrase extraction, named entity recognition, sentiment analysis, and more. It can be used to analyze unstructured text for tasks such as sentiment analysis, key phrase extraction, and named entity recognition.
+
+2. **Language Understanding (LUIS)**: This service allows you to build custom machine learning models to predict what users intend based on what they say or write. You can use the LUIS SDK to interact with your LUIS apps.
+
+3. **QnA Maker**: This service allows you to build a question-answering system from your semi-structured content like FAQ documents, URLs, and product manuals.
+
+4. **Translator Text**: This service provides real-time translation capabilities. It can be used to translate text from one language to another, detect the language of a given text, and even provide transliteration of text.
+
+5. **Speech Service**: This service provides APIs for speech recognition, speech synthesis, and speaker recognition. It can be used to convert spoken language into written text, generate human-like speech from text, and identify individual speakers based on their unique voice.
+
+6. **Immersive Reader**: This service is a tool that implements proven techniques to improve reading and writing for people regardless of their age or ability. It helps users of all abilities, including those with learning differences like dyslexia and English language learners, to read and comprehend text.
+
+7. **Custom Neural Voice**: This service allows you to create a unique voice for your brand with the help of AI. You can use it to build a recognizable, one-of-a-kind neural voice for various applications.
+
+8. **Conversation Transcription**: This service provides real-time transcription of conversations. It can be used to transcribe multi-user conversations, making it ideal for transcribing meetings.
+
+9. **Ink Recognizer**: This service allows you to recognize digital ink content, including handwriting and shapes, and convert it into a standard format that can be used in other applications.
+
 ### Azure AI Language services
 
 Here are some real-world examples of using Azure AI Language services in Python:
