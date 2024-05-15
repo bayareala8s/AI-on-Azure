@@ -1,6 +1,6 @@
 ### Azure AI Language services
 
-Sure, here are some real-world examples of using Azure AI Language services in Python:
+Here are some real-world examples of using Azure AI Language services in Python:
 
 1. **Extract Information (Named Entity Recognition)**: Extracting key phrases or entities from a text using Text Analytics API.
 
